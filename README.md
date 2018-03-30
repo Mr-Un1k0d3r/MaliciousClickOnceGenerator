@@ -21,7 +21,7 @@ optional arguments:
 
 ```
 
-`config.json` example. The shellcode payload.bin need to be a `RAW` format of your shellcode.
+`config.json` example. The shellcode payload.bin need to be the `RAW` format of your shellcode.
 ```
 {
         "title": "My Evil ClickOnce",
