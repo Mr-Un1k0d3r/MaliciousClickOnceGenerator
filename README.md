@@ -1,5 +1,5 @@
 # ClickOnceGenerator
-Quick Malicious ClickOnceGenerator for Red Team
+Quick Malicious ClickOnceGenerator for Red Team. The default application a simple WebBrowser widget that point to a website of your choice.
 
 # Usage
 ```
@@ -21,7 +21,7 @@ optional arguments:
 
 ```
 
-`config.json` example. The shellcode payload.bin need to be a `RAW` format of your shellcode
+`config.json` example. The shellcode payload.bin need to be a `RAW` format of your shellcode.
 ```
 {
         "title": "My Evil ClickOnce",
