@@ -1,0 +1,6 @@
+{
+        "title": "My Evil ClickOnce",
+        "url": "http://ringzer0team.com/",
+        "shellcode": "payload.bin",
+        "process_name": "iexplore"
+}
