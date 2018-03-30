@@ -30,5 +30,11 @@ optional arguments:
         "process_name": "iexplore"
 }
 ```
+`title` is the title of the ClickOnce Application
+`url` url used by the WebBrowser widget
+`shellcode` the payload you want to execute while the application is launched
+`process_name` used to evade sandbox by checking if a specific process is running. (default to `iexplore`)
+
+
 # Credit
 Mr.Un1k0d3r RingZer0 Team
