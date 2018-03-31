@@ -161,6 +161,7 @@ if __name__ == "__main__":
     template = gen.set_template("template/Form1.Designer.cs").get_output()
     template = template.replace("[URL]", config.get("url")) \
     .replace("[TITLE]", config.get("title"))
+    Helper.save_file("%s/Form1.Designer.cs" % out_dir, template)
     
     shutil.copyfile("template/Form1.cs", "%s/Form1.cs" % out_dir)
     shutil.copyfile("template/Form1.resx", "%s/Form1.resx" % out_dir)
