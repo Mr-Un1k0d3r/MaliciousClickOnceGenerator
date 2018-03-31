@@ -35,6 +35,11 @@ optional arguments:
 * `shellcode` the payload you want to execute while the application is launched
 * `process_name` used to evade sandbox by checking if a specific process is running. (default to `iexplore`)
 
+# Generating the Visual Studio Project
+
+Once the files are created in the target folder create a new C# project and import the files.
+
+To publish the ClickOnce in Visual Studio go to *Project* -> *Publish*
 
 # Credit
 Mr.Un1k0d3r RingZer0 Team
