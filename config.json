@@ -1,6 +1,6 @@
 {
-        "title": "My Evil ClickOnce",
-        "url": "http://ringzer0team.com/",
-        "shellcode": "payload.bin",
+        "title": "Evil Payload",
+        "url": "https://ringzer0team.com",
+        "shellcode": "payload-last.bin",
         "process_name": "iexplore"
 }

