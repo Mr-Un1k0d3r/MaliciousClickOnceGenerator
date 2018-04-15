@@ -112,7 +112,7 @@ class Generator:
     
     def set_template(self, path):
         self.data = Helper.load_file(path, True)
-        self.rand_vars(60)
+        self.rand_vars(105)
         return self
     
     def rand_vars(self, size):
