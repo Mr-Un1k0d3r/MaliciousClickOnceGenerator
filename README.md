@@ -18,8 +18,7 @@ optional arguments:
   --out OUT             Output solution name.
   --override [OVERRIDE]
                         Delete destination if exists
-  --report [REPORT]     Add POST requests with running processes                    
-
+  --report [REPORT]     Will perform a POST request to the url defined by url_report variable. The POST contains the list of running processes                    
 ```
 
 ```
