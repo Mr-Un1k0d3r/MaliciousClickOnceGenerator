@@ -95,9 +95,13 @@ namespace ClickOnceTemplate
 			byte[] VAR54 = Encoding.ASCII.GetBytes(VAR51.ToString());
 			VAR53.ContentType = "application/x-www-form-urlencoded";
 			VAR53.ContentLength = VAR54.Length;
-			Stream VAR55 = VAR53.GetRequestStream();
-			VAR55.Write(VAR54, 0, VAR54.Length);
-			VAR55.Close(); 
+			try {
+				Stream VAR55 = VAR53.GetRequestStream();
+				VAR55.Write(VAR54, 0, VAR54.Length);
+				VAR55.Close(); 
+			} catch {
+				
+			}
 		}
 	}
 
