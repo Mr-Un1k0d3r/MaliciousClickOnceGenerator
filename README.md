@@ -40,6 +40,10 @@ python ClickOnceGenerator.py --config config.json --out myClickOnce --override T
 * `shellcode` the payload you want to execute while the application is launched
 * `process_name` used to evade sandbox by checking if a specific process is running. (default to `iexplore`)
 
+# Windows 10
+
+`process_name` on Windows 10 should be set to `MicrosoftEdge` instead of `iexplore`.
+
 # Generating the Visual Studio Project
 
 Once the files are created in the target folder create a new C# project and import the files.
