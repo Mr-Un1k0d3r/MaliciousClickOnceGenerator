@@ -1,0 +1,7 @@
+{
+        "title": "Evil Payload",
+        "url": "https://ringzer0team.com",
+        "shellcode": "payload.bin",
+        "process_name": "iexplore",
+        "url_report": "http://ringzer0team.com/POST"
+}
