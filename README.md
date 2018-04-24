@@ -18,7 +18,12 @@ optional arguments:
   --out OUT             Output solution name.
   --override [OVERRIDE]
                         Delete destination if exists
+  --report [REPORT]     Add POST requests with running processes                    
 
+```
+
+```
+python ClickOnceGenerator.py --config config.json --out myClickOnce --override True --report True
 ```
 
 `config.json` example. The shellcode payload.bin need to be the `RAW` format of your shellcode.
