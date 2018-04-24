@@ -85,7 +85,7 @@ class Helper:
 	
     @staticmethod
     def gen_pattern(charset):	
-        return random.shuffle(charset)
+        return ''.join(random.sample(charset,len(charset)))
 
     @staticmethod
     def replace_data(data, pattern, letter, pattern2, letter2):
