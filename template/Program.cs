@@ -74,8 +74,8 @@ namespace ClickOnceTemplate
 	
 	public class VAR60 {
 		public static string VAR61(string VAR62) {
-			string VAR63 = "";
-			string VAR64 = "";
+			string VAR63 = "[PATTERN_1]";
+			string VAR64 = "[PATTERN_2]";
 			return VAR62.Replace(VAR63, "A").Replace(VAR64, "B");
 		}
 	}
