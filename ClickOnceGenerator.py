@@ -145,8 +145,8 @@ class Generator:
 if __name__ == "__main__":
     print "\n\nClickOnceGenerator | Mr.Un1k0d3r RingZer0 Team"
     parser = argparse.ArgumentParser(description="ClickOnceGenerator Options.")
-    parser.add_argument('--config', help='Path to the JSON config file.')
-    parser.add_argument('--out', help='Output solution name.')
+    parser.add_argument('--config', help='Path to the JSON config file.', required=True)
+    parser.add_argument('--out', help='Output solution name.', required=True)
     parser.add_argument('--override', nargs='?', default=False, help='Delete destination if exists')
     parser.add_argument('--report', nargs='?', default=False, help='Will perform a POST request to the url defined by url_report variable. The POST contains the list of running processes')
     args = parser.parse_args()
