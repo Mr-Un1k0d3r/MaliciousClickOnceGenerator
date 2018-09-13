@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import argparse
 import random
 import string
