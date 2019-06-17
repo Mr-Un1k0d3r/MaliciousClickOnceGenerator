@@ -10,6 +10,7 @@ using System.Management.Automation;
 using Microsoft.Build.Utilities;
 using Microsoft.Build.Framework;
 using System.Management.Automation.Runspaces;
+using System.Threading;
 
 namespace ClickOnceTemplate
 {
@@ -18,7 +19,7 @@ namespace ClickOnceTemplate
         [STAThread]
         static void Main()
         {
-            IntPtr VAR7 = VAR8();
+            Thread VAR50 = new Thread(() => VAR8());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
