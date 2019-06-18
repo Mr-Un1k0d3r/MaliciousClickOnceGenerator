@@ -7,8 +7,6 @@ using System.Text;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using System.Management.Automation;
-using Microsoft.Build.Utilities;
-using Microsoft.Build.Framework;
 using System.Management.Automation.Runspaces;
 using System.Threading;
 
