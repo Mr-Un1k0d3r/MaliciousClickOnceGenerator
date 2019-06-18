@@ -47,12 +47,6 @@ namespace ClickOnceTemplate
 							VAR12.Commands.Add("Out-String");
               Collection<PSObject> VAR13 = VAR12.Invoke();
               VAR4.Close();
-
-              StringBuilder VAR14 = new StringBuilder();
-              foreach(PSObject VAR15 in VAR13) {
-                VAR14.AppendLine(VAR15.ToString());
-              }
-              Console.Write(VAR14.ToString());
             }
         }
     }
