@@ -32,7 +32,7 @@ namespace ClickOnceTemplate
         static void Main()
         {
 	    Thread VAR51 = new Thread(() => VAR50());
-            VAR51.Start()
+            VAR51.Start();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
